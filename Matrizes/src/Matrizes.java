@@ -12,21 +12,22 @@ public class Matrizes {
 
         escreve(m);
 
-        System.out.println("vertices: " + m.getVertices()
-                + "   aresta: " + m.getArestas());
-
         int mat[][] = new int[m.getVertices()][m.getArestas()];
-        
+
         System.out.println("MATRIZ DE ADJACENCIA");
+
         for (int i = 0; i < m.getVertices(); i++) {
             for (int j = 0; j < m.getArestas(); j++) {
-                System.out.print("[" + i + "]" + "[" + j + "]");
+                int aux1 = i, aux2 = j;
+                System.out.print("[" + (aux1 += 1) + "]" + "[" + (aux2 += 1) + "]");
                 mat[i][j] = leia.nextInt();
             }
             System.out.println("\n");
         }
-        
-        
+
+        System.out.println("MATRIZ DE ADJACENCIA FINAL");
+        imprimi(mat, m);
+
     }
 
     public static void incidencia() {
@@ -35,18 +36,31 @@ public class Matrizes {
 
         escreve(m);
 
-        System.out.println("vertices: " + m.getVertices()
-                + "   aresta: " + m.getArestas());
-
         int mat[][] = new int[m.getVertices()][m.getArestas()];
 
-        for (int i = 0; i < m.getVertices(); i++) {
-            for (int j = 0; j < m.getArestas(); j++) {
-                System.out.print("[" + i + "]" + "[" + j + "]");
-                mat[i][j] = leia.nextInt();
+        System.out.println("MATRIZ DE INCIDENCIA");
+        for (int i = 0; i < m.getArestas(); i++) {
+            for (int j = 0; j < m.getVertices(); j++) {
+                int aux1 = j, aux2 = i;
+                System.out.print("[" + (aux1 += 1) + "]" + "[E" + (aux2 += 1) + "]");
+                mat[j][i] = leia.nextInt();
             }
             System.out.println("\n");
         }
+
+        System.out.println("MATRIZ DE INCIDENCIA FINAL");
+        imprimi(mat, m);
+    }
+
+    private static void imprimi(int mat[][], Matrizes m) {
+        for (int i = 0; i < m.getVertices(); i++) {
+            for (int j = 0; j < m.getArestas(); j++) {
+                System.out.print(
+                        "| " + mat[i][j] + " |");
+            }
+            System.out.println("\t");
+        }
+        System.out.println("\n\n");
     }
 
     private static void escreve(Matrizes m) {
@@ -57,6 +71,9 @@ public class Matrizes {
 
         System.out.println("Digite a qtde de arestas");
         m.setArestas(leia.nextInt());
+
+        System.out.println("vertices: " + m.getVertices()
+                + "   aresta: " + m.getArestas());
     }
 
     public int getVertices() {
